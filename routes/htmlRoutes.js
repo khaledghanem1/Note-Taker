@@ -10,7 +10,7 @@ router.get('/notes', (req, res) =>{
 
 router.get('*', (req, res) =>{
     res.sendFile(path.join(__dirname,'../public/index.html'));
-});
+}); 
 
 //for other routes using * as path, youcan respond with theindex.html file
 module.exports = router;

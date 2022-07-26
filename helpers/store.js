@@ -5,7 +5,7 @@ const fs = require('fs');
 const util = require('util');
 
 // require uuid
-const uuidv1 = require('uuid/v1');
+const uuidv1 = require('./uuid');
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -22,6 +22,7 @@ class Store {
   getNotes() {
     return this.read().then((notes) => {
       // parse the notes and return them
+      console.log(notes)
     })
   }
 

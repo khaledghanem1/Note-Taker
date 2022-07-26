@@ -13,8 +13,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // set up body parsing, static, and route middleware - activities 15 and 16
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes); // activities 21 and 22
+app.use(express.static('public'));
 
 // start the server on the port - app.listen - reference server.js files from activites in this module
 app.listen(PORT, () =>

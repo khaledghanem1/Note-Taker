@@ -1,27 +1,26 @@
-// require router from express - activity 21 and 22, specifically in the routes in activity 22
-const router = require('express').Router();
-// require store from the helpers folder 
-
-// GET ALL THE NOTES //
-router.get('/notes', (req, res) => {
+// Require: router from express and restore from the helpers folder (something I create)
+// Separates the fxn'ality of reading and writing the files (activities 21 and 22)
+const router = require("express").Router();
+// const { response } = require("express");
+const store = require("../helpers/store");
+router.get("/notes", (req, res) => {
   store
-    // getNotes()
-    // then take the notes and return them with res.json
-})
-
-// POST A NEW NOTE //
-router.post('/notes', (req, res) => {
+    .getNotes()
+    .then((notes) => {
+      return res.json(notes); // res b/c you are responding with this information... returning the data you get
+    })
+    .catch((err) => res.status(500).json(err));
+});
+router.post("/notes", (req, res) => {
   store
-    // addNote(req.body)
-    // then return note with res.json
-})
-
-// DELETE A NOTE //
-router.delete('notes/:id', (req, res) => {
+    .addNote(req.body)
+    .then((note) => res.json(note))
+    .catch((err) => res.status(500).json(err));
+});
+router.delete("/notes/:id", (req, res) => {
   store
-    // removeNote(req.params.id)
-    // give a status letting you know it's been deleted
-})
-
-// export your router
+    .removeNote(req.params.id) // Params should show you what's happening... But later.
+    .then(() => res.json({ ok: true }))
+    .catch((err) => res.status(500).json(err));
+});
 module.exports = router;
