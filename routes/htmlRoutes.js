@@ -13,5 +13,4 @@ router.get('*', (req, res) =>{
 });
 
 //for other routes using * as path, youcan respond with theindex.html file
-
 module.exports = router;
